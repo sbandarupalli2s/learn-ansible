@@ -1,5 +1,9 @@
 # various types of variable declaration
 
+
+# We are declaring the variable in each play
+# The variable of one play cannot be used in another play (By default)
+
 - name: This shows how we declare the play variable
   hosts: all
   vars :
@@ -8,3 +12,15 @@
     - name : print URL
       ansible.builtin.debug:
         msg : URL == {{ URL }}
+
+# we are declaring the variable in task
+
+- name : here we are declaring the variable in var file
+  hosts: all
+  vars : demo-var.yml
+  tasks :
+    - name : collecting variable from var file
+      ansible.builtin.debug:
+        msg : URL == {{ URL }}
+
+
