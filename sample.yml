@@ -1,5 +1,5 @@
 # this is sample
-- print: This is first playbook
+- name: This is first playbook
   hosts: all
   tasks:
     - name: Printing Hello
