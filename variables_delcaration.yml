@@ -17,7 +17,7 @@
 
 - name : here we are declaring the variable in var file
   hosts : all
-  vars_files : demo-vars.yml
+  vars_files : demo-var.yml
   tasks :
     - name : collecting variable from var file
       ansible.builtin.debug:
