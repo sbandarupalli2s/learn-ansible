@@ -1,0 +1,10 @@
+# various types of variable declaration
+
+- name: This shows how we declare the play variable
+  hosts: all
+  vars :
+    URL : play.example.com
+  tasks :
+    - name : print URL
+      ansible.builtin.debug:
+        msg : URL is {{ URL }}
