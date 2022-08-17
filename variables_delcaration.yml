@@ -23,4 +23,16 @@
       ansible.builtin.debug:
         msg : URL == {{ URL }}
 
+# Here we are declaring the task level variables
+
+- name : Task level variable are declaring here
+  hosts : all
+  tasks :
+    - name : print the variable in task level
+      ansible.builtin.debug :
+        msg : URL == {{ URL }}
+
+        ## declaring here as below
+        URL : task.example.com
+
 
