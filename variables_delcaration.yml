@@ -33,6 +33,8 @@
         msg : URL == {{ URL }}
 
         ## declaring here as below
-        URL : task.example.com
+        vars :
+          URL : task.example.com
+
 
 
