@@ -36,5 +36,11 @@
       vars :
         URL : task.example.com
 
+- name : Here we are declaring the variables in inventory file which names as main.yml
+  hosts : all
+  tasks :
+    - name : print the variable URL, grabbing it from inventory file
+      ansible.builtin.debug :
+        msg : URL == {{ URL }}
 
 
