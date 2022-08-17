@@ -7,4 +7,4 @@
   tasks :
     - name : print URL
       ansible.builtin.debug:
-        msg : URL is {{ URL }}
+        msg : URL == {{ URL }}
