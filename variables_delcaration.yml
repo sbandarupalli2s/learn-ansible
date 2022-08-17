@@ -45,11 +45,12 @@
       ansible.builtin.debug :
         msg : URL == {{ URL }}
 
-## need to debug the below play
+
+# here we are passing the variable from cli
 
 - name : Here we are declaring the variables in inventory file which names as main.yml
   hosts : all
   tasks :
-    - name : print the variable from inventory file
+    - name : print the variable from CLI
       ansible.builtin.debug :
         msg : URL == {{ URL }}
