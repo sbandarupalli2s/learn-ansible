@@ -1,0 +1,18 @@
+# here we need to write the play that contains to download and install the tomcat. need to configure the tomcat. and needs to start the tomcat.
+# need to make changes
+
+- name : here we follow the above steps
+  hosts : all
+  become : true
+  tasks :
+    - name : need to download and install the tomcat
+      yum :
+        name : tomcat
+        state : latest
+    - name : need to configure
+
+    - name : need to start the tomcat
+      systemd :
+        name : tomcat
+        state : started
+        daemon_reload : true
