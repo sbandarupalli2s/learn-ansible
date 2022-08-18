@@ -1,0 +1,50 @@
+--- # this is my first ansible playbook
+
+- name : this play includes to install the elinks, adding user and coping the files.
+  hosts : all
+  become : yes
+  tasks :
+    - name : edit the hosts file and adding the hostname, IP
+      line infile :
+        path : /etc/hosts
+        line : "ansible.xyzcorp.com 169.168.0.1"
+    - name : installing the software
+      yum :
+        name : elinks
+        state : latest
+    - name : creating audit user
+      user :
+        name : xyzcorp_audit
+        state : present
+    - name : copying the motd files.
+      copy :
+        src : /home/ansible/motd
+        dest : /etc/motd
+    - name : copying the issue files
+      copy :
+        src : /home/ansible/issue
+        dest : /etc/issue
+
+- name : this play includes to install the software and adding the user.
+  hosts: network
+  become : yes
+  tasks :
+    - name : this is installing the nmap-ncat
+      yum :
+        name : nmap-ncat
+        state : latest
+    - name : creating the user
+      user :
+        name : xyzcorp_network
+        state : present
+
+- name : this play includes to copy the tgz file to /mnt/storage
+  hosts : sysadmin
+  become : yes
+  tasks :
+    - name : copying the tgz file
+      copy :
+        src : /home/ansible/scripts.tgz
+        dest : /mnt/storage
+
+- name : this is 3rd play.
