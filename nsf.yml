@@ -1,0 +1,47 @@
+- name : this is nsf
+  hosts : all
+  become : yes
+  vars :
+    share_path : /mnt/nfsroot
+  tasks :
+    - name : make sure the nsf-utils is installed
+      yum :
+        name : nsf-utils
+        state : latest
+    - name : start and enable the nsf-utils
+      service :
+        name : nsf-utils
+        state : started
+        enable : yes
+    - name : config exports
+      template :
+        src : /home/ansible/exports.j2
+        dest : /etc/exports
+        notify : update nsf
+  handlers :
+    name : update nsf exports
+    command : export -a
+    listen : update nsf
+
+
+- name : this is remote
+  hosts : remote
+  become : yes
+  vars :
+    nsf_ip : {{ host vars['nfs']['ansible_default_ipv4']['address'] }}
+    nsf_hostname : {{ host vars['nfs']['ansible_hostname'] }}
+  vars_files : /home/ansible/user-list.txt
+  tasks :
+    - name : configure host files
+      template :
+        src : /home/ansible/etc.hosts.j2
+        dest : /etc/hosts
+    - name : get file status
+      stat :
+        path : /opt/user-agreement.txt
+      register : filestat
+    - name : create user
+      user :
+        name : {{ user }}
+      when : filestat.stat.exists
+      loop : {{ users }}

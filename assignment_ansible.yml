@@ -1,0 +1,15 @@
+# here we are installing the tomcat in the remote server and trying to copy a file to remote host.
+
+- name : this play is installing the tomcat in the remote server
+  host : all
+  become : yes
+  tasks :
+    - name : installing the tomcat...
+      yum :
+        name : tomcat
+        state : latest
+
+    - name : downloading the zip file to the remote server
+      ansible.builtin.unarchive :
+        src: "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+        dest : /tmp/
