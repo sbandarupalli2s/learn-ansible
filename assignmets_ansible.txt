@@ -1,3 +1,6 @@
 1. install the tomcat in the remote servers
 2. copy and delete the files in the remote servers.
 3. collect the server ip address of remote server and store it in the file.
+
+
+4. need to check the certs validity and if it expires need to update the certs in the servers
