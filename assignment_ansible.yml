@@ -8,7 +8,6 @@
       yum :
         name : tomcat
         state : latest
-
     - name : downloading the zip file to the remote server
       ansible.builtin.unarchive :
         src: "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
