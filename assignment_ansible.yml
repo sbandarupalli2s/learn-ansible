@@ -13,9 +13,14 @@
         src: "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
         dest : /tmp/
         remote_src: yes
-    - name : download and install the jenkins
-      yum :
-        name : jenkins
-        state : latest
+    - name: Ensure Jenkins and java-devel package installed
+      yum:
+        name: '{{ packages }}'
+        state: present
+        update_cache: true
+      vars:
+        packages:
+          - jenkins
+          - java-devel
       tags :
         - jenkins_server
