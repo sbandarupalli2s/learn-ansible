@@ -13,3 +13,9 @@
         src: "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
         dest : /tmp/
         remote_src: yes
+    - name : download and install the jenkins
+      yum :
+        name : jenkins
+        state : latest
+      tags :
+        - jenkins_server
